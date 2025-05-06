@@ -8,6 +8,7 @@ import Cart from './pages/Cart'
 import Navbar from './components/Navbar'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Footer from './components/Footer'
 
 const App = () => {
 
@@ -50,6 +51,7 @@ const App = () => {
     <Route path='/cart' element={<Cart/>}/>
     <Route path='*' element={<h1>404 Not Found</h1>}/>
    </Routes>
+   <Footer/>
    </BrowserRouter>
    </>
   )
