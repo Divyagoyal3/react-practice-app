@@ -24,12 +24,12 @@ const Product = () => {
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-    // setPage(1)
+    setPage(1)
     // setOpenFilter(false)
   };
   const handleBrandChange = (e) => {
     setBrand(e.target.value);
-    // setPage(1)
+    setPage(1)
     // setOpenFilter(false)
   };
 
