@@ -4,13 +4,13 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { LuNotebookText } from 'react-icons/lu';
 import { MdDeliveryDining } from 'react-icons/md';
 import { GiShoppingBag } from 'react-icons/gi';
-// import { useUser } from '@clerk/clerk-react';
+import { useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
-import emptyCart from '../assets/empty-cart.png'
+import emptyCart from "../assets/empty-cart.png"
 
 const Cart = ({location, getLocation}) => {
   const { cartItem , updateQuantity, deleteItem} = useCart()
-  // const {user} = useUser()
+  const {user} = useUser()
   const navigate = useNavigate()
   
 
@@ -47,7 +47,7 @@ const Cart = ({location, getLocation}) => {
                 <h1 className='text-gray-800 font-bold text-xl'>Delivery Info</h1>
                 <div className='flex flex-col space-y-1'>
                   <label htmlFor="">Full Name</label>
-                  <input type="text" placeholder='Enter your name' className='p-2 rounded-md' />
+                  <input type="text" placeholder='Enter your name' className='p-2 rounded-md' value={user?.fullName}/>
                 </div>
                 <div className='flex flex-col space-y-1'>
                   <label htmlFor="">Address</label>

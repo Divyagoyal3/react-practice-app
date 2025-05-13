@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext(null)
 

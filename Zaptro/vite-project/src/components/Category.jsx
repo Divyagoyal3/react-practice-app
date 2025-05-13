@@ -4,10 +4,19 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Category = () => {
-    const {categoryOnlyData} = getData();
+    // const {categoryOnlyData} = getData();
     const navigate = useNavigate();
+    const {data} = getData();
 
-   
+     const getUniqueCategory = (data, property) =>{
+            let newVal = data?.map((curElem) =>{
+                return curElem[property];
+    
+            }) 
+            return newVal = [...new Set(newVal)];
+        }
+        
+        const categoryOnlyData = getUniqueCategory(data, "category");
 
 
     

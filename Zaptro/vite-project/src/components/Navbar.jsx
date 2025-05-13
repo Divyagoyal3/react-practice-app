@@ -6,17 +6,20 @@ import { IoCartOutline } from "react-icons/io5";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { CgClose } from "react-icons/cg";
 import { useCart } from "../context/CartContext";
+import { useState } from "react";
+import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
+import ResponsiveMenu from "./ResponsiveMenu";
 
 const Navbar = ({location,getLocation,openDropdown, setOpenDropdown}) => {
 
-
+    const [openNav, setOpenNav] = useState(false)
     const {cartItem}= useCart();    
     const toggleDropdown = ()=>{
         setOpenDropdown(!openDropdown)
     }
  
   return (
-    <div className="bg-white py-3 shadow-2xl px-4">
+    <div className="bg-white py-3 shadow-2xl px-4 md:px-0">
       <div className=" max-w-6xl mx-auto flex justify-between items-center">
         {/* Logo section */}
         <div className="flex gap-4 items-center">
@@ -25,7 +28,7 @@ const Navbar = ({location,getLocation,openDropdown, setOpenDropdown}) => {
               <span className="text-red-500 font-serif">Z</span>aptro
             </h1>
           </Link>
-          <div className="md:flex gap-1 cursor-pointer text-gray-700 items-center"></div>
+          <div className="md:flex gap-1 cursor-pointer text-gray-700 items-center hidden"></div>
           <MapPin className="text-red-500" />
           <span className="font-semibold ">
             {location ? (
@@ -48,7 +51,7 @@ const Navbar = ({location,getLocation,openDropdown, setOpenDropdown}) => {
         </div>
         {/* Menu section */}
         <nav className="flex gap-7 items-center">
-          <ul className="md:flex gap-7 items-center text-xl font-semibold">
+          <ul className="md:flex gap-7 items-center text-xl font-semibold hidden md:flex">
             <NavLink
               to={"/"}
               className={({ isActive }) =>
@@ -108,7 +111,7 @@ const Navbar = ({location,getLocation,openDropdown, setOpenDropdown}) => {
               {cartItem.length}
             </span>
           </Link>
-          <div className="">
+          <div className="hidden md:block">
             <SignedOut>
               <SignInButton  className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer"/>
             </SignedOut>
@@ -116,8 +119,14 @@ const Navbar = ({location,getLocation,openDropdown, setOpenDropdown}) => {
               <UserButton />
             </SignedIn>
           </div>
+              {
+                        openNav ? <HiMenuAlt3 onClick={()=>setOpenNav(false)} className='h-7 w-7 md:hidden'/>:<HiMenuAlt1 
+                        onClick={()=>setOpenNav(true)}
+                        className='h-7 w-7 md:hidden'/>
+                    }
         </nav>
       </div>
+      <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav}/>
     </div>
   );
 };
